@@ -4,7 +4,7 @@ import TodoSearch from './containers/TodoSearch';
 import TodoList from './containers/TodoList';
 import TodoItem from './containers/TodoItem';
 import CreateTodoButton from './containers/CreateTodoButton';
-// import './styles/App.css';
+
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },

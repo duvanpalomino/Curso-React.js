@@ -3,7 +3,8 @@ body {
   padding: 0;
   background: #F2F4F5;
   color: #1E1E1F;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', Arial, Helvetica,
+  sans-serif;
 };
 
 #root {
@@ -12,7 +13,3 @@ body {
   min-height: 100vh;
 };
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
