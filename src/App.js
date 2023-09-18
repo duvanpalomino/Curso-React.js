@@ -4,7 +4,7 @@ import TodoSearch from './containers/TodoSearch';
 import TodoList from './containers/TodoList';
 import TodoItem from './containers/TodoItem';
 import CreateTodoButton from './containers/CreateTodoButton';
-import './App.css';
+// import './styles/App.css';
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: true },
@@ -15,7 +15,7 @@ const defaultTodos = [
 
 function App() {
   return (
-    <React.Fragment>
+    <>
 
       <TodoCounter completed={16} total={25} />
       <TodoSearch />
@@ -32,7 +32,7 @@ function App() {
       
       <CreateTodoButton />
       
-    </React.Fragment>
+    </>
   );
 };
 
