@@ -4,7 +4,7 @@ import { ReactComponent as DeleteSVG } from '../Icons/delete.svg';
 import '../styles/TodoIcon.css';
 
 const iconTypes = {
-    'check': (color) => <CheckSVG className='Icon-svg' fill={color}/>,
+    'check': (color) => <CheckSVG className='Icon-svg' fill={color} />,
     'delete': (color) => <DeleteSVG className='Icon-svg' fill={color} />,
 }
 
