@@ -4,6 +4,7 @@ import TodoSearch from './containers/TodoSearch';
 import TodoList from './containers/TodoList';
 import TodoItem from './containers/TodoItem';
 import CreateTodoButton from './containers/CreateTodoButton';
+import useLocalStorage from './Hooks/useLocalStorage';
 
 
 // const defaultTodos = [
@@ -18,21 +19,10 @@ import CreateTodoButton from './containers/CreateTodoButton';
 
 // localStorage.removeItem('TODOS_V1');
 
-function App() {
 
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  
-  let parsedTodos;
+function App() {  
 
-  if(!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
-  } else{
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
-  
-
-  const [todos, setTodos] = React.useState(parsedTodos);
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
 
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -45,12 +35,6 @@ function App() {
     return todoText.includes(searchText);
     }
   );
-
-  const saveTodos = (newTodos) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
-
-    setTodos(newTodos);
-  }
 
   const completeTodo = (text) => {
     const newTodos = [...todos];
