@@ -6,6 +6,7 @@ import TodoItem from './containers/TodoItem';
 import CreateTodoButton from './containers/CreateTodoButton';
 import useLocalStorage from './Hooks/useLocalStorage';
 
+// localStorage.removeItem('TODOS_V1');
 
 // const defaultTodos = [
 //   { text: 'Cortar cebolla', completed: true },
@@ -17,12 +18,15 @@ import useLocalStorage from './Hooks/useLocalStorage';
 
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 
-// localStorage.removeItem('TODOS_V1');
-
 
 function App() {  
 
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []);
 
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -64,6 +68,10 @@ function App() {
       />
 
       <TodoList>
+        {loading && <p>Estamos cargando...</p>}
+        {error && <p>Desesperate, Hubo un error!!</p>}
+        {(!loading && searchedTodos.length === 0 ) && <p>Crea tu primer TODO!</p>}
+
         { searchedTodos.map(todo => (
           <TodoItem 
             key={todo.text} 
