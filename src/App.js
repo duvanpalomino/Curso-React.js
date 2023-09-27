@@ -20,7 +20,7 @@ function App() {
     completeTodo,
     deleteTodo,
     openModal,
-    setOpenModal,      
+    // setOpenModal,      
   } = React.useContext(TodoContext);
 
   return (
