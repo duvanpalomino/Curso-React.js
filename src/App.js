@@ -1,5 +1,4 @@
 import React from 'react';
-import { TodoProvider } from './context/TodoContext';
 import TodoCounter from './containers/TodoCounter';
 import TodoSearch from './containers/TodoSearch';
 import TodoList from './containers/TodoList';
@@ -13,48 +12,46 @@ import { TodoContext } from './context/TodoContext';
 
 function App() {  
 
+  const {
+    loading,
+    error,
+    searchedTodos,
+    completeTodo,
+    deleteTodo,      
+  } = React.useContext(TodoContext);
+
   return (
 
-    <TodoProvider>
+    <>
 
       <TodoCounter />
       <TodoSearch  />
+    
+      <TodoList>
+        {loading && 
+          <>
+            < TodosLoading />
+            < TodosLoading />
+            < TodosLoading />
+          </>
+        }
+        {error && < TodosError />}
+        {(!loading && searchedTodos.length === 0 ) && < EmptyTodos />}
+
+        { searchedTodos.map(todo => (
+          <TodoItem 
+            key={todo.text} 
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo (todo.text)}
+            onDelete={() => deleteTodo (todo.text)}
+            />
+        )) }
+      </TodoList>
       
-      <TodoContext.Consumer>
-        {({
-          loading,
-          error,
-          searchedTodos,
-          completeTodo,
-          deleteTodo,      
-        }) => (
-          <TodoList>
-            {loading && 
-              <>
-                < TodosLoading />
-                < TodosLoading />
-                < TodosLoading />
-              </>
-            }
-            {error && < TodosError />}
-            {(!loading && searchedTodos.length === 0 ) && < EmptyTodos />}
-
-            { searchedTodos.map(todo => (
-              <TodoItem 
-                key={todo.text} 
-                text={todo.text}
-                completed={todo.completed}
-                onComplete={() => completeTodo (todo.text)}
-                onDelete={() => deleteTodo (todo.text)}
-                />
-            )) }
-          </TodoList>
-        )}
-      </TodoContext.Consumer> 
-
       <CreateTodoButton />
       
-    </TodoProvider>
+    </>
   );
 };
 
