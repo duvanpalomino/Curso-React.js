@@ -9,6 +9,7 @@ import EmptyTodos from './containers/EmptyTodos';
 import CreateTodoButton from './containers/CreateTodoButton';
 import { TodoContext } from './context/TodoContext';
 import Modal from './containers/Modal';
+import TodoForm from './containers/TodoForm';
 
 
 function App() {  
@@ -56,7 +57,7 @@ function App() {
 
       {openModal && (
         <Modal>
-          La funcionalidad de agregar TODOS
+          <TodoForm />
         </Modal>
       )}
       
